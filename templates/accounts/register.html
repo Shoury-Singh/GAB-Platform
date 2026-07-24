@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Register - GAB Platform{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="card auth-card">
+        <div class="auth-header"><h3><i class="bi bi-person-plus-fill me-2"></i>Create Your Account</h3><p>Join the collaborative business network</p></div>
+        <div class="card-body p-4">
+            <form method="post" novalidate>{% csrf_token %}
+                <div class="mb-3"><label class="form-label fw-semibold">Username *</label>{{ form.username }}{% if form.username.errors %}<div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>{% endif %}</div>
+                <div class="mb-3"><label class="form-label fw-semibold">Email *</label>{{ form.email }}{% if form.email.errors %}<div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>{% endif %}</div>
+                <div class="mb-3"><label class="form-label fw-semibold">Your Role *</label>{{ form.role }}<div class="form-text">Choose carefully — this decides your features & dashboard.</div>{% if form.role.errors %}<div class="text-danger small mt-1">{{ form.role.errors.0 }}</div>{% endif %}</div>
+                <div class="mb-3" id="business-name-field"><label class="form-label fw-semibold">Business / Shop / Factory Name <span class="text-danger" id="biz-required">*</span></label>{{ form.business_name }}<div class="form-text">Required for Industry, Wholesaler & Shopkeeper</div>{% if form.business_name.errors %}<div class="text-danger small mt-1">{{ form.business_name.errors.0 }}</div>{% endif %}</div>
+                <div class="mb-3"><label class="form-label fw-semibold">Phone Number</label>{{ form.phone }}</div>
+                <div class="row"><div class="col-md-6 mb-3"><label class="form-label fw-semibold">City</label>{{ form.city }}</div><div class="col-md-6 mb-3"><label class="form-label fw-semibold">State</label>{{ form.state }}</div></div>
+                <div class="mb-3"><label class="form-label fw-semibold">Password *</label>{{ form.password1 }}{% if form.password1.errors %}<div class="text-danger small mt-1">{{ form.password1.errors.0 }}</div>{% endif %}</div>
+                <div class="mb-4"><label class="form-label fw-semibold">Confirm Password *</label>{{ form.password2 }}{% if form.password2.errors %}<div class="text-danger small mt-1">{{ form.password2.errors.0 }}</div>{% endif %}</div>
+                <button type="submit" class="btn btn-primary btn-gab w-100 mb-3"><i class="bi bi-check-circle me-2"></i>Create Account</button>
+                <p class="text-center mb-0">Already have an account? <a href="{% url 'login' %}" class="fw-semibold text-decoration-none">Login here</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+const roleSelect = document.getElementById('id_role');
+const bizRequired = document.getElementById('biz-required');
+function toggleBusinessRequired() { bizRequired.style.display = roleSelect.value === 'BUYER' ? 'none' : 'inline'; }
+roleSelect.addEventListener('change', toggleBusinessRequired);
+toggleBusinessRequired();
+</script>
+{% endblock %}

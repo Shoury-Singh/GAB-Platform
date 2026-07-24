@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Wholesaler Dashboard - GAB{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4"><div><h2 class="mb-1">Wholesaler Dashboard</h2><p class="text-muted mb-0">Welcome, {{ user.business_name|default:user.username }}</p></div><span class="badge bg-success fs-6 px-3 py-2">Wholesaler</span></div>
+    <div class="row g-4">
+        <div class="col-md-4"><div class="card dashboard-card h-100"><div class="card-body text-center p-4"><i class="bi bi-box-seam display-4 text-primary mb-3"></i><h5>Inventory & Catalog</h5><p class="text-muted small">Manage bulk stock & pricing</p><button class="btn btn-outline-primary btn-sm" disabled>Coming Soon</button></div></div></div>
+        <div class="col-md-4"><div class="card dashboard-card h-100"><div class="card-body text-center p-4"><i class="bi bi-shop display-4 text-success mb-3"></i><h5>Shopkeeper Network</h5><p class="text-muted small">Connect & supply to retailers</p><button class="btn btn-outline-success btn-sm" disabled>Coming Soon</button></div></div></div>
+        <div class="col-md-4"><div class="card dashboard-card h-100"><div class="card-body text-center p-4"><i class="bi bi-building display-4 text-warning mb-3"></i><h5>Industry Suppliers</h5><p class="text-muted small">Source directly from factories</p><button class="btn btn-outline-warning btn-sm" disabled>Coming Soon</button></div></div></div>
+    </div>
+    <div class="alert alert-info mt-4"><i class="bi bi-info-circle me-2"></i>Placeholder dashboard. Full wholesaler features coming next.</div>
+</div>
+{% endblock %}

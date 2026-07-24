@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}My Profile - GAB Platform{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center"><div class="col-lg-8">
+        <div class="card dashboard-card">
+            <div class="card-header bg-white border-0 pt-4 px-4"><h4 class="mb-0"><i class="bi bi-person-badge me-2 text-primary"></i>My Profile</h4></div>
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <div class="col-md-6"><label class="text-muted small">Username</label><p class="fw-semibold fs-5">{{ user_obj.username }}</p></div>
+                    <div class="col-md-6"><label class="text-muted small">Email</label><p class="fw-semibold">{{ user_obj.email }}</p></div>
+                    <div class="col-md-6"><label class="text-muted small">Role</label><p><span class="badge bg-primary fs-6">{{ user_obj.get_role_display }}</span></p></div>
+                    <div class="col-md-6"><label class="text-muted small">Business Name</label><p class="fw-semibold">{{ user_obj.business_name|default:"—" }}</p></div>
+                    <div class="col-md-6"><label class="text-muted small">Phone</label><p>{{ user_obj.phone|default:"—" }}</p></div>
+                    <div class="col-md-6"><label class="text-muted small">Location</label><p>{% if user_obj.city or user_obj.state %}{{ user_obj.city }}{% if user_obj.city and user_obj.state %}, {% endif %}{{ user_obj.state }}{% else %}—{% endif %}</p></div>
+                    <div class="col-md-6"><label class="text-muted small">Account Status</label><p>{% if user_obj.is_verified %}<span class="badge bg-success">Verified</span>{% else %}<span class="badge bg-warning text-dark">Pending Verification</span>{% endif %}</p></div>
+                    <div class="col-md-6"><label class="text-muted small">Joined On</label><p>{{ user_obj.date_joined|date:"d M Y, h:i A" }}</p></div>
+                </div>
+                <hr class="my-4">
+                <div class="d-flex gap-2"><a href="{% url user_obj.get_dashboard_url %}" class="btn btn-primary btn-gab"><i class="bi bi-speedometer2 me-1"></i> Go to Dashboard</a><a href="{% url 'logout' %}" class="btn btn-outline-secondary">Logout</a></div>
+            </div>
+        </div>
+    </div></div>
+</div>
+{% endblock %}
