@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Login - GAB Platform{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="card auth-card">
+        <div class="auth-header"><h3><i class="bi bi-box-arrow-in-right me-2"></i>Welcome Back</h3><p>Login to your GAB account</p></div>
+        <div class="card-body p-4">
+            <form method="post" novalidate>{% csrf_token %}
+                <div class="mb-3"><label for="id_username" class="form-label fw-semibold">Username</label>{{ form.username }}{% if form.username.errors %}<div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>{% endif %}</div>
+                <div class="mb-4"><label for="id_password" class="form-label fw-semibold">Password</label>{{ form.password }}{% if form.password.errors %}<div class="text-danger small mt-1">{{ form.password.errors.0 }}</div>{% endif %}{% if form.non_field_errors %}<div class="text-danger small mt-1">{{ form.non_field_errors.0 }}</div>{% endif %}</div>
+                <button type="submit" class="btn btn-primary btn-gab w-100 mb-3"><i class="bi bi-unlock me-2"></i>Login</button>
+                <p class="text-center mb-0">Don't have an account? <a href="{% url 'register' %}" class="fw-semibold text-decoration-none">Register now</a></p>
+            </form>
+        </div>
+    </div>
+    <div class="text-center mt-4"><p class="text-muted small">One platform for <strong>Industry</strong> • <strong>Wholesaler</strong> • <strong>Shopkeeper</strong> • <strong>Buyer</strong></p></div>
+</div>
+{% endblock %}
